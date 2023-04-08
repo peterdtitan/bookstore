@@ -23,7 +23,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Math Magicians<a name="about-project"></a>
+# 📖 Bookstore CMS<a name="about-project"></a>
 
 **Bookstore** is a simple book app for reading and updating progress of books.
 

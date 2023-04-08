@@ -2,6 +2,7 @@ import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import PropTypes from 'prop-types';
 import 'react-circular-progressbar/dist/styles.css';
+import { books } from '../data/dummy';
 
 export default function BookCard({ book }) {
   return (
@@ -38,5 +39,5 @@ export default function BookCard({ book }) {
 }
 
 BookCard.propTypes = {
-  book: PropTypes.objectOf(PropTypes.object()).isRequired,
+  book: PropTypes.objectOf(books).isRequired,
 };
