@@ -7,7 +7,7 @@ export default function AddBook() {
       <form className="flex w-full justify-between items-center mt-6">
         <input className="w-[55%] h-10 p-2 border-[0.5px] border-slate-300 rounded-sm focus:outline-none" placeholder="Book" />
         <input className="w-[25%] h-10 p-2 border-[0.5px] border-slate-300 rounded-sm focus:outline-none" placeholder="Author" />
-        <button className="bg-blue-500 text-white rounded-md px-4 py-2 font-normal" type="submit">ADD BOOK</button>
+        <button className="bg-blue-500 text-white rounded-md px-4 py-2 font-normal" type="button">ADD BOOK</button>
       </form>
     </div>
   );
