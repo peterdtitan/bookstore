@@ -1,31 +1,25 @@
-export const books = [
+const books = [
   {
     id: 1,
-    title: 'The Awakening',
-    genre: 'Action',
-    author: 'Peter Okorafor',
-    progress: 34,
+    title: 'The Great Gatsby',
+    author: 'John Smith',
+    category: 'Fiction',
+    progress: 64,
   },
   {
     id: 2,
-    title: 'The Hunger Games',
-    genre: 'Action',
-    author: 'Suzanne Collins',
-    progress: 66,
+    title: 'Anna Karenina',
+    author: 'Leo Tolstoy',
+    category: 'Fiction',
+    progress: 36,
   },
   {
     id: 3,
-    title: 'Dune',
-    genre: 'Science Fiction',
-    author: 'Frank Herbert',
-    progress: 8,
+    title: 'The Selfish Gene',
+    author: 'Richard Dawkins',
+    category: 'Nonfiction',
+    progress: 12,
   },
 ];
 
-export const dummy = [
-  {
-    id: 1,
-    title: 'The Awakening',
-    genre: 'Action',
-  },
-];
+export default books;
