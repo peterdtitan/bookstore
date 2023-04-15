@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/books/booksSlice';
 import { nanoid } from 'nanoid';
+import { addBook } from '../redux/books/booksSlice';
 
 export default function AddBook() {
   const [title, setTitle] = useState('');
@@ -10,9 +10,9 @@ export default function AddBook() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const item_id = nanoid()
+    const itemId = nanoid();
     const book = {
-      item_id,
+      itemId,
       title,
       author,
       category: 'Fiction',

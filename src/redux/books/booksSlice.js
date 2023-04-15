@@ -13,13 +13,18 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
 });
 
 export const addBook = createAsyncThunk('books/addBook', async (book) => {
-  await axios.post(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${process.env.REACT_APP_BOOKS_API}/books`, book);
+  const { itemId } = book;
+  const { title, author, category } = book;
+  const payload = {
+    item_id: itemId, title, author, category,
+  };
+  await axios.post(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${process.env.REACT_APP_BOOKS_API}/books`, payload);
   return book;
 });
 
-export const deleteBook = createAsyncThunk('books/deleteBook', async (item_id) => {
-  await axios.delete(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${process.env.REACT_APP_BOOKS_API}/books/${item_id}`);
-  return item_id;
+export const deleteBook = createAsyncThunk('books/deleteBook', async (id) => {
+  await axios.delete(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${process.env.REACT_APP_BOOKS_API}/books/${id}`);
+  return id;
 });
 
 const booksSlice = createSlice({
@@ -27,28 +32,38 @@ const booksSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchBooks.pending]: (state) => {
-      state.status = 'loading';
-    },
+    [fetchBooks.pending]: (state) => ({
+      ...state,
+      status: 'loading',
+    }),
     [fetchBooks.fulfilled]: (state, action) => {
-      state.status = 'succeeded';
-      state.books = action.payload.data;
+      const newBooks = action.payload.data;
+      return { ...state, books: newBooks, status: 'succeeded' };
     },
-    [fetchBooks.rejected]: (state, action) => {
-      state.status = 'failed';
-      state.error = action.error.message;
-    },
+    [fetchBooks.rejected]: (state, action) => ({
+      ...state,
+      status: 'failed',
+      error: action.error.message,
+    }),
     [addBook.fulfilled]: (state, action) => {
       const book = action.payload;
-      state.books[book.item_id] = [{
-        author: book.author,
-        title: book.title,
-        category: book.category,
-      }];
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          [book.itemId]: [{
+            author: book.author,
+            title: book.title,
+            category: book.category,
+          }],
+        },
+      };
     },
     [deleteBook.fulfilled]: (state, action) => {
-      const { payload: item_id } = action;
-      delete state.books[item_id];
+      const { payload: id } = action;
+      const newBooks = { ...state.books };
+      delete newBooks[id];
+      return { ...state, books: newBooks };
     },
   },
 });
