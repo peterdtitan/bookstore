@@ -12,8 +12,9 @@ export default function Home() {
   return (
     <div>
       <div className="bg-gray-50 p-10 flex-col gap-y-20">
-        {books.map((book) => (
-          <div className="mt-4" key={book.id}>
+      {Object.keys(books).map((key) => (
+        books[key].map((book) => (
+          <div className="mt-4" key={key}>
             <div className="flex border-[0.5px] border-slate-200 rounded-md bg-white p-8 justify-between">
               <div className="flex flex-col gap-1">
                 <h1 className="text-sm font-medium font-montserrat text-slate-400">{book.category}</h1>
@@ -27,7 +28,7 @@ export default function Home() {
               </div>
               <div className="flex">
                 <div className="flex items-center justify-center gap-4 ">
-                  <CircularProgress variant="determinate" value={book.progress} size={70} />
+                  <CircularProgress variant="determinate" value={64} size={70} />
                   <div className="flex flex-col items-start justify-center pr-8 border-r-[0.5px] border-slate-300">
                     <p className="text-4xl font-normal font-montserrat text-black">
                       {book.progress}
@@ -44,7 +45,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-        ))}
+          ))
+          ))}
       </div>
       <AddBook />
     </div>
