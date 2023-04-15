@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
 import { addBook } from '../redux/books/booksSlice';
 
 export default function AddBook() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books.books);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const itemId = nanoid();
     const book = {
-      id: books.length + 1,
+      itemId,
       title,
       author,
       category: 'Fiction',
-      progress: 0,
     };
     dispatch(addBook(book));
     setTitle('');
