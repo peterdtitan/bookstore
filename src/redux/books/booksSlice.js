@@ -4,7 +4,7 @@ import axios from 'axios';
 const initialState = {
   books: {},
   status: 'idle',
-  error: null
+  error: null,
 };
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
@@ -13,27 +13,24 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
 });
 
 export const addBook = createAsyncThunk('books/addBook', async (book) => {
-  const response = await axios.post(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${process.env.REACT_APP_BOOKS_API}/books`, book);
-  if(response){
-    return book
-  }
+  await axios.post(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${process.env.REACT_APP_BOOKS_API}/books`, book);
+  return book;
+});
+
+export const deleteBook = createAsyncThunk('books/deleteBook', async (item_id) => {
+  await axios.delete(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${process.env.REACT_APP_BOOKS_API}/books/${item_id}`);
+  return item_id;
 });
 
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-    removeBook: (state, action) => {
-      const { payload: id } = action;
-      state.books = state.books.filter((book) => book.id !== id);
-    },
-  },
+  reducers: {},
   extraReducers: {
     [fetchBooks.pending]: (state) => {
       state.status = 'loading';
     },
     [fetchBooks.fulfilled]: (state, action) => {
-      console.log(action)
       state.status = 'succeeded';
       state.books = action.payload.data;
     },
@@ -42,7 +39,16 @@ const booksSlice = createSlice({
       state.error = action.error.message;
     },
     [addBook.fulfilled]: (state, action) => {
-      state.books.push(action.payload);
+      const book = action.payload;
+      state.books[book.item_id] = [{
+        author: book.author,
+        title: book.title,
+        category: book.category,
+      }];
+    },
+    [deleteBook.fulfilled]: (state, action) => {
+      const { payload: item_id } = action;
+      delete state.books[item_id];
     },
   },
 });
