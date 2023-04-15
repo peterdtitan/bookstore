@@ -51,6 +51,14 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 🚀 Live Demo <a name="live-demo"></a>
+
+> View a deployed and ready version of the app on [Render](https://bookstore-cms-widh.onrender.com/)
+
+- [Live Demo Link](https://bookstore-cms-widh.onrender.com/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
