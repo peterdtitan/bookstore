@@ -25,7 +25,7 @@ export default function Home() {
           <p className="text-center text-lg text-gray-500">No books found.</p>
         </div>
       ) : (
-        <div className="bg-gray-50 p-10 flex-col gap-y-20">
+        <div className="bg-gray-50 p-10 flex-col gap-y-20 pt-24">
           {Object.keys(books).map((key) => (
             books[key].map((book) => {
               const prog = getProg();

@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App md:mt-12 mx-0 md:mx-10 pb-10">
+    <div className="App mx-0 pb-10">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

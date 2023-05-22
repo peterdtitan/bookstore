@@ -23,7 +23,7 @@ export default function AddBook() {
   };
 
   return (
-    <div className="border-t-[0.5px] border-slate-400 p-4 mt-10 flex flex-col">
+    <div className="border-t-[0.5px] border-slate-400 p-8 mt-10 flex flex-col">
       <p className="text-[#888888] text-xl font-montserrat font-semibold">ADD NEW BOOK</p>
       <form className="flex flex-col md:flex-row gap-y-4 w-full justify-between md:items-center mt-6" id="add-book">
         <input className="md:w-[55%] h-10 p-2 border-[0.5px] border-slate-300 rounded-sm focus:outline-none" placeholder="Book" value={title} onChange={(e) => setTitle(e.target.value)} />
