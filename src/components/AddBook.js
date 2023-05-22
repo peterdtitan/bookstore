@@ -34,4 +34,4 @@ export default function AddBook() {
   );
 }
 
-//TODO: Add Footer and PropTypes.
+// TODO: Add Footer and PropTypes.
