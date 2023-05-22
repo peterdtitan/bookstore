@@ -33,3 +33,5 @@ export default function AddBook() {
     </div>
   );
 }
+
+//TODO: Add Footer and PropTypes.
